@@ -26,8 +26,8 @@ public final class MusicPlayer implements JMC {
 			p.addPhrase(phrases[i]);
 		}
 		while (true) {
-			for (int x = 0; x < 8; x++){
-				for (int y = 0; y < 8; y++){
+			for (int x = 0; x < grid.maxRows; x++){
+				for (int y = 0; y < grid.maxCols; y++){
 					phrases[y].empty();
 					//Turn off highlighting in previous column
 					//If first row, turn off the last column
@@ -55,13 +55,13 @@ public final class MusicPlayer implements JMC {
 	}
 	
 	public void SetPentatonicScale(){
-		scaleValue[0] = 0;
-		scaleValue[1] = 3;
-		scaleValue[2] = 5;
-		scaleValue[3] = 7;
-		scaleValue[4] = 10;
-		scaleValue[5] = 12;
-		scaleValue[6] = 15;
-		scaleValue[7] = 17;		
+		scaleValue[7] = 0;
+		scaleValue[6] = 3;
+		scaleValue[5] = 5;
+		scaleValue[4] = 7;
+		scaleValue[3] = 10;
+		scaleValue[2] = 12;
+		scaleValue[1] = 15;
+		scaleValue[0] = 17;		
 	}
 }
