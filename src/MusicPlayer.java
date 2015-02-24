@@ -14,8 +14,7 @@ public final class MusicPlayer implements JMC {
 		SetPentatonicScale();
 		
 		Score s = new Score("JMDemo1 - Scale");	
-		Score s1 = new Score();
-		
+	
 		Part p = new Part("Flute", RHODES, 0);
 		s.addPart(p);
 		Play.midi(s, false);
@@ -37,7 +36,7 @@ public final class MusicPlayer implements JMC {
 					else {
 						grid.cells[x-1][y].highlighted = false;
 					}
-					if (grid.cells[x][y].selected){
+					if (grid.cells[x][y].height != Grid.heightValue.off){
 						grid.cells[x][y].highlighted = true;
 						Note n = new Note (C4+scaleValue[y], SIXTEENTH_NOTE);
 						phrases[y].addNote(n);
@@ -48,7 +47,6 @@ public final class MusicPlayer implements JMC {
 					}	
 				}
 				grid.repaint();
-				Play.updateScore(s1);
 				Play.midi(s, false);	
 			}
 		}

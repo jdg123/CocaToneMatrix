@@ -8,15 +8,17 @@ import javax.swing.JPanel;
 
 public class Grid extends JPanel implements MouseListener {
 	
+	enum heightValue {low, mid, high, off};
+	
 	public static class Cell extends Point {
 		
-		public boolean selected;
+		heightValue height;
 		public boolean highlighted;
 		
 		public Cell(int x, int y) {
 			this.x = x;
 			this.y = y;
-			selected = false;
+			height = heightValue.off;
 			highlighted = false;
 		}
 	}
@@ -48,7 +50,7 @@ public class Grid extends JPanel implements MouseListener {
 					int cellY = 10 + (y * 50);
 					if (cells[x][y].highlighted)
 						g.setColor(Color.BLUE);
-					else if (cells[x][y].selected)
+					else if (cells[x][y].height == heightValue.low)
 						g.setColor(Color.GRAY);	
 					else
 						g.setColor(Color.WHITE);
@@ -68,11 +70,11 @@ public class Grid extends JPanel implements MouseListener {
 		
 		public void toggleCell(int x, int y) {
 			Cell c = cells[x][y];
-			if (c.selected) {
-				c.selected = false;
+			if (c.height == heightValue.off) {
+				c.height = heightValue.low;
 			}
 			else
-				c.selected = true;
+				c.height = heightValue.off;
 			repaint();
 		}
 
