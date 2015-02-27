@@ -49,15 +49,23 @@ public class Grid extends JPanel implements MouseListener {
 					int cellX = 10 + (x * 50);
 					int cellY = 10 + (y * 50);
 					if (cells[x][y].highlighted)
-						g.setColor(Color.BLUE);
+						if (cells[x][y].height == heightValue.low)
+							g.setColor(Color.BLUE);
+						else if (cells[x][y].height == heightValue.mid)
+							g.setColor(Color.YELLOW);
+						else g.setColor(Color.RED);
 					else if (cells[x][y].height == heightValue.low)
-						g.setColor(Color.GRAY);	
+						g.setColor(Color.LIGHT_GRAY);	
+					else if (cells[x][y].height == heightValue.mid)
+						g.setColor(Color.GRAY);
+					else if (cells[x][y].height == heightValue.high)
+						g.setColor(Color.DARK_GRAY);
 					else
-						g.setColor(Color.WHITE);
+						g.setColor(Color.BLACK);
 					g.fillRect(cellX, cellY, 50, 50);
 				}		
 			}
-			g.setColor(Color.BLACK);
+			g.setColor(Color.WHITE);
 			g.drawRect(10, 10, 400, 400);
 
 			for (int i = 10; i <= 410; i += 50){
@@ -70,11 +78,21 @@ public class Grid extends JPanel implements MouseListener {
 		
 		public void toggleCell(int x, int y) {
 			Cell c = cells[x][y];
-			if (c.height == heightValue.off) {
-				c.height = heightValue.low;
+			switch (c.height){
+				case off: c.height = heightValue.low;
+				break;
+				case low: c.height = heightValue.mid;
+				break;
+				case mid: c.height = heightValue.high;
+				break;
+				case high: c.height= heightValue.off;
+				break;
 			}
-			else
-				c.height = heightValue.off;
+			//			if (c.height == heightValue.off) {
+//				c.height = heightValue.low;
+//			}
+//			else
+//				c.height = heightValue.off;
 			repaint();
 		}
 
